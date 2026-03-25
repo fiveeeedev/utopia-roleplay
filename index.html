@@ -4,131 +4,339 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Utopia Roleplay</title>
-
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #0b0b0f 0%, #11111a 100%);
-      color: white;
-      text-align: center;
+      background: #09090d;
+      color: #fff;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1100px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      opacity: 0.18;
+      z-index: 0;
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(9,9,13,0.72), rgba(9,9,13,0.88)),
+        url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      z-index: -2;
+    }
+
+    .glow {
+      position: fixed;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(174,159,198,0.18) 0%, rgba(174,159,198,0.05) 30%, transparent 70%);
+      top: -250px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(20px);
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: rgba(8, 8, 12, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #AE9FC6;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(174,159,198,0.12);
+      color: #fff;
+    }
+
+    .nav-pill {
+      border: 1px solid rgba(174,159,198,0.38);
+      color: #AE9FC6 !important;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 20px 40px;
+    }
+
+    .hero-content {
+      max-width: 1050px;
       margin: 0 auto;
-      padding: 80px 20px;
     }
 
     .badge {
       display: inline-block;
-      padding: 10px 18px;
-      border: 1px solid rgba(174, 159, 198, 0.45);
+      padding: 12px 22px;
+      border: 1px solid rgba(174,159,198,0.45);
+      background: rgba(174,159,198,0.08);
+      color: #AE9FC6;
       border-radius: 999px;
-      color: #AE9FC6;
-      margin-bottom: 30px;
       font-size: 14px;
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
     }
 
-    .title {
-      font-size: 58px;
-      font-weight: bold;
-      margin-bottom: 10px;
+    .hero-logo {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 25px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(174,159,198,0.28), rgba(255,255,255,0.08));
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      font-weight: 900;
+      color: #AE9FC6;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
     }
 
-    .title span {
+    h1 {
+      margin: 0;
+      font-size: 78px;
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    h1 .accent {
       color: #AE9FC6;
     }
 
-    .subtitle {
-      color: #c8c8d0;
-      font-size: 20px;
-      margin-bottom: 35px;
-    }
-
-    .players {
+    .hero-text {
+      max-width: 820px;
+      margin: 28px auto 0;
+      color: #d0d0d7;
       font-size: 28px;
-      color: #AE9FC6;
-      margin-bottom: 10px;
-      font-weight: bold;
+      line-height: 1.5;
     }
 
-    .server-status {
-      color: #bdbdc7;
-      margin-bottom: 40px;
-    }
-
-    .button-group {
-      margin-bottom: 60px;
+    .hero-buttons {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      padding: 16px 24px;
+      border-radius: 14px;
       text-decoration: none;
-      background: #AE9FC6;
-      color: white;
-      padding: 15px 24px;
-      margin: 8px;
-      border-radius: 10px;
-      font-size: 16px;
       font-weight: bold;
+      font-size: 16px;
+      transition: 0.2s ease;
       border: none;
       cursor: pointer;
-      transition: 0.2s ease;
     }
 
-    .btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
+    .btn-primary {
+      background: #AE9FC6;
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(174,159,198,0.28);
     }
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #AE9FC6;
-      color: #AE9FC6;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
     }
 
-    .grid {
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .stats {
+      margin: 48px auto 0;
+      max-width: 980px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-top: 30px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat {
+      background: rgba(12,12,18,0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 26px 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: #AE9FC6;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #acacb9;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #b9b9c4;
+      max-width: 700px;
+      margin: 0 auto 34px;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
     .card {
-      background: rgba(255,255,255,0.04);
+      background: rgba(12,12,18,0.78);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
+      border-radius: 24px;
       padding: 28px;
-      text-align: left;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
 
-    .card h2 {
+    .card h3 {
       margin-top: 0;
-      margin-bottom: 8px;
-      color: #AE9FC6;
+      margin-bottom: 12px;
+      font-size: 24px;
     }
 
     .card p {
-      color: #d2d2db;
+      color: #c5c5cf;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: #dcdce4;
+      line-height: 1.8;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .form-card {
+      background: rgba(12,12,18,0.82);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 28px;
+    }
+
+    .form-card h3 {
+      margin-top: 0;
+      font-size: 28px;
+      color: #AE9FC6;
+    }
+
+    .form-card p {
+      color: #c6c6d0;
+      line-height: 1.6;
       margin-bottom: 18px;
-      line-height: 1.5;
     }
 
     input, textarea, select {
       width: 100%;
       margin-bottom: 12px;
-      padding: 14px;
-      border-radius: 10px;
+      padding: 15px;
+      background: #151520;
       border: 1px solid rgba(255,255,255,0.08);
-      background: #181823;
       color: white;
+      border-radius: 12px;
       font-size: 15px;
+      outline: none;
     }
 
     textarea {
@@ -136,110 +344,223 @@
       resize: vertical;
     }
 
-    .footer-note {
-      margin-top: 45px;
-      color: #9d9daa;
+    .footer {
+      text-align: center;
+      color: #8f8f9d;
+      padding: 35px 20px 55px;
       font-size: 14px;
     }
 
+    @media (max-width: 1050px) {
+      h1 {
+        font-size: 58px;
+      }
+
+      .hero-text {
+        font-size: 22px;
+      }
+
+      .stats,
+      .cards,
+      .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 700px) {
-      .title {
-        font-size: 40px;
+      .navbar {
+        padding: 16px 18px;
       }
 
-      .subtitle {
-        font-size: 17px;
+      .nav-links {
+        gap: 6px;
       }
 
-      .players {
-        font-size: 23px;
+      .logo {
+        font-size: 22px;
+      }
+
+      h1 {
+        font-size: 42px;
+        letter-spacing: -1px;
+      }
+
+      .hero-text {
+        font-size: 18px;
+      }
+
+      .stats,
+      .cards,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 50px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="badge">Serveur FiveM Québécois</div>
+  <div class="background"></div>
+  <div class="glow"></div>
 
-    <div class="title">Utopia <span>Roleplay</span></div>
-    <div class="subtitle">Communauté RP • Citoyens • Développement</div>
+  <nav class="navbar">
+    <div class="logo">UTOPIA <span>RP</span></div>
 
-    <div class="players" id="players">Chargement du serveur...</div>
-    <div class="server-status" id="serverStatus">Vérification du nombre de joueurs en cours...</div>
+    <div class="nav-links">
+      <a href="#">Accueil</a>
+      <a href="#">Règlement</a>
+      <a href="#">Code criminel</a>
+      <a href="https://discord.gg/tEMGHt2CKK" target="_blank">Discord</a>
+      <a href="https://utopia.fiveshield.co/" target="_blank">Panel</a>
+      <a href="#" class="nav-pill"><span id="navPlayers">... joueurs en ligne</span></a>
+    </div>
+  </nav>
 
-    <div class="button-group">
-      <a class="btn" href="https://discord.gg/tEMGHt2CKK" target="_blank">Rejoindre le Discord</a>
-      <a class="btn btn-outline" href="fivem://connect/51.222.255.220:30120">Rejoindre le serveur</a>
-      <a class="btn btn-outline" href="https://utopia.fiveshield.co/" target="_blank">Lien de connexion</a>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">Serveur FiveM Roleplay Québécois</div>
+
+      <div class="hero-logo">U</div>
+
+      <h1>
+        Bienvenue dans un monde<br>
+        <span class="accent">sans limites</span>
+      </h1>
+
+      <div class="hero-text">
+        Rejoins Utopia Roleplay, un serveur immersif pensé pour les citoyens,
+        les organisations, les histoires sérieuses et une vraie évolution du RP.
+      </div>
+
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="fivem://connect/51.222.255.220:30120">Nous rejoindre</a>
+        <a class="btn btn-secondary" href="https://discord.gg/tEMGHt2CKK" target="_blank">Discord</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number" id="playersHero">...</div>
+          <div class="stat-label">Joueurs en ligne</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">2020</div>
+          <div class="stat-label">Fondé</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">18+</div>
+          <div class="stat-label">Âge requis</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">V4</div>
+          <div class="stat-label">Version</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">Pourquoi Utopia ?</div>
+    <div class="section-subtitle">
+      Un mélange entre immersion, stabilité, communauté et développement actif.
+      Le but est d’offrir une expérience RP propre, sérieuse et agréable à long terme.
     </div>
 
-    <div class="grid">
+    <div class="cards">
       <div class="card">
-        <h2>Espace Citoyens</h2>
-        <p>
-          Suggestions, questions, plaintes, support ou demande d'information.
-        </p>
-
-        <input id="citoyenNom" placeholder="Ton nom / pseudo" />
-        <select id="citoyenType">
-          <option value="Suggestion">Suggestion</option>
-          <option value="Support">Support</option>
-          <option value="Plainte">Plainte</option>
-          <option value="Question">Question</option>
-        </select>
-        <textarea id="citoyenMessage" placeholder="Écris ton message ici..."></textarea>
-        <button class="btn" onclick="sendCitoyen()">Envoyer</button>
+        <h3>Citoyens</h3>
+        <p>Un espace pensé pour les joueurs qui veulent vivre, évoluer et construire leur histoire.</p>
+        <ul>
+          <li>Support et aide communautaire</li>
+          <li>Suggestions et idées</li>
+          <li>Suivi des annonces importantes</li>
+        </ul>
       </div>
 
       <div class="card">
-        <h2>Espace Développement</h2>
-        <p>
-          Bugs, améliorations, idées techniques, suivi du développement.
-        </p>
+        <h3>Développement</h3>
+        <p>Le serveur continue d’évoluer avec des améliorations, correctifs et nouvelles idées.</p>
+        <ul>
+          <li>Signalement de bugs</li>
+          <li>Suggestions techniques</li>
+          <li>Suivi des nouveautés</li>
+        </ul>
+      </div>
 
-        <input id="devNom" placeholder="Ton nom / pseudo" />
-        <select id="devType">
-          <option value="Bug">Bug</option>
-          <option value="Amélioration">Amélioration</option>
-          <option value="Suggestion technique">Suggestion technique</option>
-          <option value="Autre">Autre</option>
-        </select>
-        <textarea id="devMessage" placeholder="Décris la demande ou le problème..."></textarea>
-        <button class="btn" onclick="sendDev()">Envoyer</button>
+      <div class="card">
+        <h3>Communauté</h3>
+        <p>Un serveur pensé pour durer, avec une vision claire et une ambiance structurée.</p>
+        <ul>
+          <li>Discord actif</li>
+          <li>Organisation claire</li>
+          <li>Évolution constante</li>
+        </ul>
       </div>
     </div>
+  </section>
 
-    <div class="footer-note">
-      Utopia Roleplay • Site communautaire
+  <section class="section" id="contact">
+    <div class="section-title">Espaces communautaires</div>
+    <div class="section-subtitle">
+      Tu peux prévoir ici plus tard un envoi automatique vers Discord pour les citoyens et pour le développement.
     </div>
+
+    <div class="form-grid">
+      <div class="form-card">
+        <h3>Espace Citoyens</h3>
+        <p>Suggestions, plaintes, support ou questions générales.</p>
+
+        <input type="text" placeholder="Ton nom / pseudo">
+        <select>
+          <option>Suggestion</option>
+          <option>Support</option>
+          <option>Plainte</option>
+          <option>Question</option>
+        </select>
+        <textarea placeholder="Écris ton message..."></textarea>
+        <button class="btn btn-primary" type="button">Envoyer</button>
+      </div>
+
+      <div class="form-card">
+        <h3>Espace Développement</h3>
+        <p>Bugs, améliorations et propositions techniques.</p>
+
+        <input type="text" placeholder="Ton nom / pseudo">
+        <select>
+          <option>Bug</option>
+          <option>Amélioration</option>
+          <option>Suggestion technique</option>
+          <option>Autre</option>
+        </select>
+        <textarea placeholder="Décris ton idée ou ton problème..."></textarea>
+        <button class="btn btn-primary" type="button">Envoyer</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Utopia Roleplay • Communauté FiveM Québec
   </div>
 
   <script>
     async function loadPlayers() {
-      const playersEl = document.getElementById("players");
-      const statusEl = document.getElementById("serverStatus");
+      const navPlayers = document.getElementById("navPlayers");
+      const playersHero = document.getElementById("playersHero");
 
       try {
         const response = await fetch("http://51.222.255.220:30120/dynamic.json");
         const data = await response.json();
-
-        playersEl.innerText = data.clients + " joueur(s) connecté(s)";
-        statusEl.innerText = "Serveur en ligne";
-      } catch (error) {
-        playersEl.innerText = "Compteur joueurs non disponible pour le moment";
-        statusEl.innerText = "Le site est en ligne, mais la lecture directe du serveur peut être bloquée";
+        navPlayers.innerText = data.clients + " joueurs en ligne";
+        playersHero.innerText = data.clients;
+      } catch (e) {
+        navPlayers.innerText = "Serveur en ligne";
+        playersHero.innerText = "N/A";
       }
     }
 
     loadPlayers();
-
-    function sendCitoyen() {
-      alert("Pour l’instant, ne mets pas encore de webhook ici. Je vais te montrer la méthode sécurisée juste après.");
-    }
-
-    function sendDev() {
-      alert("Pour l’instant, ne mets pas encore de webhook ici. Je vais te montrer la méthode sécurisée juste après.");
-    }
   </script>
 </body>
 </html>
