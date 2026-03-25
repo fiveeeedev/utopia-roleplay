@@ -1,163 +1,245 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Utopia Roleplay</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utopia Roleplay</title>
 
-<style>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-background: #0b0b0f;
-color: white;
-font-family: Arial;
-text-align: center;
-margin: 0;
-padding: 0;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #0b0b0f 0%, #11111a 100%);
+      color: white;
+      text-align: center;
+    }
 
-.container {
-margin-top: 100px;
-}
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
 
-.title {
-font-size: 50px;
-font-weight: bold;
-}
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid rgba(174, 159, 198, 0.45);
+      border-radius: 999px;
+      color: #AE9FC6;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
 
-.subtitle {
-color: #aaa;
-margin-top: 10px;
-}
+    .title {
+      font-size: 58px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-.players {
-font-size: 30px;
-margin-top: 30px;
-color: #AE9FC6;
-}
+    .title span {
+      color: #AE9FC6;
+    }
 
-button {
-background: #AE9FC6;
-border: none;
-padding: 15px 25px;
-margin: 10px;
-color: white;
-font-size: 16px;
-border-radius: 8px;
-cursor: pointer;
-}
+    .subtitle {
+      color: #c8c8d0;
+      font-size: 20px;
+      margin-bottom: 35px;
+    }
 
-button:hover {
-opacity: 0.8;
-}
+    .players {
+      font-size: 28px;
+      color: #AE9FC6;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
 
-.section {
-margin-top: 60px;
-}
+    .server-status {
+      color: #bdbdc7;
+      margin-bottom: 40px;
+    }
 
-input, textarea {
-padding: 12px;
-width: 300px;
-margin: 5px;
-border-radius: 6px;
-border: none;
-}
+    .button-group {
+      margin-bottom: 60px;
+    }
 
-</style>
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #AE9FC6;
+      color: white;
+      padding: 15px 24px;
+      margin: 8px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
 
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #AE9FC6;
+      color: #AE9FC6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #AE9FC6;
+    }
+
+    .card p {
+      color: #d2d2db;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #181823;
+      color: white;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .footer-note {
+      margin-top: 45px;
+      color: #9d9daa;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .title {
+        font-size: 40px;
+      }
+
+      .subtitle {
+        font-size: 17px;
+      }
+
+      .players {
+        font-size: 23px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <div class="badge">Serveur FiveM Québécois</div>
 
-<div class="container">
+    <div class="title">Utopia <span>Roleplay</span></div>
+    <div class="subtitle">Communauté RP • Citoyens • Développement</div>
 
-<div class="title">Utopia Roleplay</div>
-<div class="subtitle">Serveur FiveM Québécois</div>
+    <div class="players" id="players">Chargement du serveur...</div>
+    <div class="server-status" id="serverStatus">Vérification du nombre de joueurs en cours...</div>
 
-<div class="players" id="players">
-Chargement...
-</div>
+    <div class="button-group">
+      <a class="btn" href="https://discord.gg/tEMGHt2CKK" target="_blank">Rejoindre le Discord</a>
+      <a class="btn btn-outline" href="fivem://connect/51.222.255.220:30120">Rejoindre le serveur</a>
+      <a class="btn btn-outline" href="https://utopia.fiveshield.co/" target="_blank">Lien de connexion</a>
+    </div>
 
-<div>
-<button onclick="window.location.href='https://discord.gg/'">
-Discord
-</button>
+    <div class="grid">
+      <div class="card">
+        <h2>Espace Citoyens</h2>
+        <p>
+          Suggestions, questions, plaintes, support ou demande d'information.
+        </p>
 
-<button onclick="window.location.href='fivem://connect/'">
-Rejoindre serveur
-</button>
-</div>
+        <input id="citoyenNom" placeholder="Ton nom / pseudo" />
+        <select id="citoyenType">
+          <option value="Suggestion">Suggestion</option>
+          <option value="Support">Support</option>
+          <option value="Plainte">Plainte</option>
+          <option value="Question">Question</option>
+        </select>
+        <textarea id="citoyenMessage" placeholder="Écris ton message ici..."></textarea>
+        <button class="btn" onclick="sendCitoyen()">Envoyer</button>
+      </div>
 
-<div class="section">
+      <div class="card">
+        <h2>Espace Développement</h2>
+        <p>
+          Bugs, améliorations, idées techniques, suivi du développement.
+        </p>
 
-<h2>Espace Citoyens</h2>
+        <input id="devNom" placeholder="Ton nom / pseudo" />
+        <select id="devType">
+          <option value="Bug">Bug</option>
+          <option value="Amélioration">Amélioration</option>
+          <option value="Suggestion technique">Suggestion technique</option>
+          <option value="Autre">Autre</option>
+        </select>
+        <textarea id="devMessage" placeholder="Décris la demande ou le problème..."></textarea>
+        <button class="btn" onclick="sendDev()">Envoyer</button>
+      </div>
+    </div>
 
-<input id="citoyen" placeholder="Votre message">
-<br>
+    <div class="footer-note">
+      Utopia Roleplay • Site communautaire
+    </div>
+  </div>
 
-<button onclick="sendCitoyen()">Envoyer</button>
+  <script>
+    async function loadPlayers() {
+      const playersEl = document.getElementById("players");
+      const statusEl = document.getElementById("serverStatus");
 
-</div>
+      try {
+        const response = await fetch("http://51.222.255.220:30120/dynamic.json");
+        const data = await response.json();
 
-<div class="section">
+        playersEl.innerText = data.clients + " joueur(s) connecté(s)";
+        statusEl.innerText = "Serveur en ligne";
+      } catch (error) {
+        playersEl.innerText = "Compteur joueurs non disponible pour le moment";
+        statusEl.innerText = "Le site est en ligne, mais la lecture directe du serveur peut être bloquée";
+      }
+    }
 
-<h2>Espace Développement</h2>
+    loadPlayers();
 
-<input id="dev" placeholder="Message développement">
-<br>
+    function sendCitoyen() {
+      alert("Pour l’instant, ne mets pas encore de webhook ici. Je vais te montrer la méthode sécurisée juste après.");
+    }
 
-<button onclick="sendDev()">Envoyer</button>
-
-</div>
-
-</div>
-
-<script>
-
-// joueurs FiveM
-
-fetch("https://servers-frontend.fivem.net/api/servers/single/")
-.then(res => res.json())
-.then(data => {
-
-document.getElementById("players").innerText =
-data.Data.clients + " joueurs connectés";
-
-})
-
-// webhook citoyens
-
-function sendCitoyen(){
-
-fetch("WEBHOOK_CITOYEN", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-content: "Citoyen : " + document.getElementById("citoyen").value
-})
-})
-
-}
-
-// webhook dev
-
-function sendDev(){
-
-fetch("WEBHOOK_DEV", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-content: "Développement : " + document.getElementById("dev").value
-})
-})
-
-}
-
-</script>
-
+    function sendDev() {
+      alert("Pour l’instant, ne mets pas encore de webhook ici. Je vais te montrer la méthode sécurisée juste après.");
+    }
+  </script>
 </body>
 </html>
