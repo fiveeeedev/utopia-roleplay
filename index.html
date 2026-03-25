@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utopia Roleplay</title>
+
+<style>
+
+body {
+background: #0b0b0f;
+color: white;
+font-family: Arial;
+text-align: center;
+margin: 0;
+padding: 0;
+}
+
+.container {
+margin-top: 100px;
+}
+
+.title {
+font-size: 50px;
+font-weight: bold;
+}
+
+.subtitle {
+color: #aaa;
+margin-top: 10px;
+}
+
+.players {
+font-size: 30px;
+margin-top: 30px;
+color: #AE9FC6;
+}
+
+button {
+background: #AE9FC6;
+border: none;
+padding: 15px 25px;
+margin: 10px;
+color: white;
+font-size: 16px;
+border-radius: 8px;
+cursor: pointer;
+}
+
+button:hover {
+opacity: 0.8;
+}
+
+.section {
+margin-top: 60px;
+}
+
+input, textarea {
+padding: 12px;
+width: 300px;
+margin: 5px;
+border-radius: 6px;
+border: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">Utopia Roleplay</div>
+<div class="subtitle">Serveur FiveM Québécois</div>
+
+<div class="players" id="players">
+Chargement...
+</div>
+
+<div>
+<button onclick="window.location.href='https://discord.gg/'">
+Discord
+</button>
+
+<button onclick="window.location.href='fivem://connect/'">
+Rejoindre serveur
+</button>
+</div>
+
+<div class="section">
+
+<h2>Espace Citoyens</h2>
+
+<input id="citoyen" placeholder="Votre message">
+<br>
+
+<button onclick="sendCitoyen()">Envoyer</button>
+
+</div>
+
+<div class="section">
+
+<h2>Espace Développement</h2>
+
+<input id="dev" placeholder="Message développement">
+<br>
+
+<button onclick="sendDev()">Envoyer</button>
+
+</div>
+
+</div>
+
+<script>
+
+// joueurs FiveM
+
+fetch("https://servers-frontend.fivem.net/api/servers/single/")
+.then(res => res.json())
+.then(data => {
+
+document.getElementById("players").innerText =
+data.Data.clients + " joueurs connectés";
+
+})
+
+// webhook citoyens
+
+function sendCitoyen(){
+
+fetch("WEBHOOK_CITOYEN", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+content: "Citoyen : " + document.getElementById("citoyen").value
+})
+})
+
+}
+
+// webhook dev
+
+function sendDev(){
+
+fetch("WEBHOOK_DEV", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+content: "Développement : " + document.getElementById("dev").value
+})
+})
+
+}
+
+</script>
+
+</body>
+</html>
