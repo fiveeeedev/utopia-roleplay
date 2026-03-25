@@ -559,23 +559,30 @@
     Utopia Roleplay • Communauté FiveM Québec
   </div>
 
-  <script>
-    async function loadPlayers() {
-      const navPlayers = document.getElementById("navPlayers");
-      const playersHero = document.getElementById("playersHero");
+<script>
 
-      try {
-        const response = await fetch("http://51.222.255.220:30120/dynamic.json");
-        const data = await response.json();
-        navPlayers.innerText = data.clients + " joueurs en ligne";
-        playersHero.innerText = data.clients;
-      } catch (e) {
-        navPlayers.innerText = "Serveur en ligne";
-        playersHero.innerText = "N/A";
-      }
-    }
+async function loadPlayers() {
+  const navPlayers = document.getElementById("navPlayers");
+  const playersHero = document.getElementById("playersHero");
 
-    loadPlayers();
-  </script>
+  try {
+
+    const response = await fetch("https://servers-frontend.fivem.net/api/servers/single/51.222.255.220:30120");
+    const data = await response.json();
+
+    navPlayers.innerText = data.Data.clients + " joueurs en ligne";
+    playersHero.innerText = data.Data.clients;
+
+  } catch (e) {
+
+    navPlayers.innerText = "Serveur en ligne";
+    playersHero.innerText = "Online";
+
+  }
+}
+
+loadPlayers();
+
+</script>
 </body>
 </html>
