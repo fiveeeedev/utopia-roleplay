@@ -415,6 +415,91 @@
         min-height: auto;
         padding-top: 50px;
       }
+
+      .changelog-list {
+  display: grid;
+  gap: 20px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.changelog-item {
+  background: rgba(12, 12, 18, 0.84);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+}
+
+.changelog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.changelog-version {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.changelog-date {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.patch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.patch-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 18px 20px;
+}
+
+.patch-title {
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.patch-title.add {
+  color: #7ee787;
+}
+
+.patch-title.fix {
+  color: #ff7b72;
+}
+
+.patch-title.change {
+  color: #f2cc60;
+}
+
+.patch-title.optim {
+  color: var(--primary);
+}
+
+.patch-box ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #dcdce4;
+  line-height: 1.9;
+}
+
+@media (max-width: 700px) {
+  .patch-grid {
+    grid-template-columns: 1fr;
+  }
+}
     }
   </style>
 </head>
@@ -426,14 +511,14 @@
     <div class="logo">UTOPIA <span>RP</span></div>
 
     <div class="nav-links">
-      <a href="#">Accueil</a>
-      <a href="#">Règlement</a>
-      <a href="#">Code criminel</a>
-      <a href="https://discord.gg/tEMGHt2CKK" target="_blank">Discord</a>
-      <a href="https://utopia.fiveshield.co/" target="_blank">Panel</a>
-      <a href="#" class="nav-pill"><span id="navPlayers">Serveur en ligne</span></a>
-    </div>
-  </nav>
+  <a href="#">Accueil</a>
+  <a href="#">Règlement</a>
+  <a href="#changelog">Changelog</a>
+  <a href="#">Code criminel</a>
+  <a href="https://discord.gg/tEMGHt2CKK" target="_blank">Discord</a>
+  <a href="https://utopia.fiveshield.co/" target="_blank">Panel</a>
+  <a href="#" class="nav-pill"><span id="navPlayers">Serveur en ligne</span></a>
+</div>
 
   <section class="hero">
     <div class="hero-content">
@@ -514,6 +599,105 @@
       </div>
     </div>
   </section>
+
+  <section class="section" id="changelog">
+  <div class="section-title">Changelog</div>
+  <div class="section-subtitle">
+    Toutes les nouveautés, correctifs, ajustements et optimisations du serveur seront regroupés ici.
+  </div>
+
+  <div class="changelog-list">
+    <div class="changelog-item">
+      <div class="changelog-header">
+        <div class="changelog-version">V2 • Ouverture officielle</div>
+        <div class="changelog-date">02 février 2026</div>
+      </div>
+
+      <div class="patch-grid">
+        <div class="patch-box">
+          <div class="patch-title add">Ajouts</div>
+          <ul>
+            <li>Lancement officiel de la V2</li>
+            <li>Mise en place des nouvelles bases du serveur</li>
+            <li>Nouvelle structure pour l’évolution roleplay</li>
+          </ul>
+        </div>
+
+        <div class="patch-box">
+          <div class="patch-title fix">Correctifs</div>
+          <ul>
+            <li>Correction de plusieurs problèmes liés à l’ancienne version</li>
+            <li>Nettoyage général de certaines mécaniques instables</li>
+            <li>Ajustements techniques avant l’ouverture</li>
+          </ul>
+        </div>
+
+        <div class="patch-box">
+          <div class="patch-title change">Changements</div>
+          <ul>
+            <li>Rééquilibrage de plusieurs éléments du gameplay</li>
+            <li>Nouvelle direction pour l’expérience roleplay</li>
+            <li>Amélioration de la cohérence globale du serveur</li>
+          </ul>
+        </div>
+
+        <div class="patch-box">
+          <div class="patch-title optim">Optimisations</div>
+          <ul>
+            <li>Amélioration de la stabilité générale</li>
+            <li>Optimisation de certaines ressources serveur</li>
+            <li>Préparation pour une meilleure expérience en ville</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="changelog-item">
+      <div class="changelog-header">
+        <div class="changelog-version">Mise à jour suivante</div>
+        <div class="changelog-date">À modifier</div>
+      </div>
+
+      <div class="patch-grid">
+        <div class="patch-box">
+          <div class="patch-title add">Ajouts</div>
+          <ul>
+            <li>Ajoute ici tes nouveautés</li>
+            <li>Exemple : nouveau système</li>
+            <li>Exemple : nouveau contenu</li>
+          </ul>
+        </div>
+
+        <div class="patch-box">
+          <div class="patch-title fix">Correctifs</div>
+          <ul>
+            <li>Ajoute ici les bugs corrigés</li>
+            <li>Exemple : correction d’un problème en ville</li>
+            <li>Exemple : fix d’un script</li>
+          </ul>
+        </div>
+
+        <div class="patch-box">
+          <div class="patch-title change">Changements</div>
+          <ul>
+            <li>Ajoute ici les changements importants</li>
+            <li>Exemple : équilibrage</li>
+            <li>Exemple : ajustement d’une mécanique</li>
+          </ul>
+        </div>
+
+        <div class="patch-box">
+          <div class="patch-title optim">Optimisations</div>
+          <ul>
+            <li>Ajoute ici les optimisations</li>
+            <li>Exemple : performance</li>
+            <li>Exemple : stabilité</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section class="section" id="contact">
     <div class="section-title">Participer à l’évolution de la ville</div>
