@@ -9,10 +9,10 @@
     :root {
       --primary: #8dcdff;
       --bg-dark: #09090d;
-      --bg-card: rgba(12, 12, 18, 0.8);
+      --bg-card: rgba(12, 12, 18, 0.82);
       --border: rgba(255, 255, 255, 0.08);
-      --text-soft: #cfcfd8;
-      --text-muted: #a7a7b4;
+      --text-soft: #d6d6df;
+      --text-muted: #a9a9b7;
     }
 
     * {
@@ -36,11 +36,11 @@
       position: fixed;
       inset: 0;
       background:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 48px 48px;
       pointer-events: none;
-      opacity: 0.22;
+      opacity: 0.2;
       z-index: 0;
     }
 
@@ -48,8 +48,8 @@
       position: fixed;
       inset: 0;
       background:
-        linear-gradient(rgba(9,9,13,0.76), rgba(9,9,13,0.9)),
-        url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+        linear-gradient(rgba(9,9,13,0.72), rgba(9,9,13,0.9)),
+        url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
       z-index: -2;
     }
 
@@ -58,9 +58,9 @@
       top: -240px;
       left: 50%;
       transform: translateX(-50%);
-      width: 950px;
-      height: 950px;
-      background: radial-gradient(circle, rgba(141,205,255,0.18) 0%, rgba(141,205,255,0.06) 34%, transparent 72%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(141,205,255,0.18) 0%, rgba(141,205,255,0.05) 36%, transparent 72%);
       filter: blur(22px);
       z-index: -1;
       pointer-events: none;
@@ -131,7 +131,7 @@
     }
 
     .hero-content {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -145,6 +145,7 @@
       font-size: 14px;
       letter-spacing: 0.5px;
       margin-bottom: 28px;
+      text-transform: uppercase;
     }
 
     .hero-logo {
@@ -176,7 +177,7 @@
     }
 
     .hero-text {
-      max-width: 820px;
+      max-width: 860px;
       margin: 28px auto 0;
       color: var(--text-soft);
       font-size: 28px;
@@ -195,7 +196,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 180px;
+      min-width: 190px;
       padding: 16px 24px;
       border-radius: 14px;
       text-decoration: none;
@@ -276,7 +277,7 @@
     .section-subtitle {
       text-align: center;
       color: #b9b9c4;
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto 34px;
       line-height: 1.6;
       font-size: 18px;
@@ -436,37 +437,36 @@
 
   <section class="hero">
     <div class="hero-content">
-      <div class="badge">Serveur FiveM Roleplay Québécois</div>
+      <div class="badge">Serveur roleplay québécois • Ouverture V2 le 2 février 2026</div>
 
       <div class="hero-logo">U</div>
 
       <h1>
-        Bienvenue dans un monde<br>
-        <span class="accent">sans limites</span>
+        Entre dans une ville<br>
+        <span class="accent">où chaque choix compte</span>
       </h1>
 
       <div class="hero-text">
-        Rejoins Utopia Roleplay, un serveur immersif pensé pour les citoyens,
-        les organisations, les histoires sérieuses et une vraie évolution du RP.
+        Utopia Roleplay est un serveur FiveM québécois axé sur l’immersion, la progression du personnage et une expérience roleplay pensée pour durer. Rejoins une communauté active dans une ville en constante évolution.
       </div>
 
       <div class="hero-buttons">
-        <a class="btn btn-primary" href="fivem://connect/51.222.255.220:30120">Nous rejoindre</a>
-        <a class="btn btn-secondary" href="https://discord.gg/tEMGHt2CKK" target="_blank">Discord</a>
+        <a class="btn btn-primary" href="fivem://connect/51.222.255.220:30120">Rejoindre la ville</a>
+        <a class="btn btn-secondary" href="https://discord.gg/tEMGHt2CKK" target="_blank">Rejoindre Discord</a>
       </div>
 
       <div class="stats">
         <div class="stat">
           <div class="stat-number" id="playersHero">--</div>
-          <div class="stat-label">Joueurs connectés</div>
+          <div class="stat-label">Joueurs en ville</div>
         </div>
         <div class="stat">
           <div class="stat-number">02.02.2026</div>
-          <div class="stat-label">Date d'ouverture</div>
+          <div class="stat-label">Ouverture V2</div>
         </div>
         <div class="stat">
           <div class="stat-number">18+</div>
-          <div class="stat-label">Âge requis</div>
+          <div class="stat-label">Accès réservé</div>
         </div>
         <div class="stat">
           <div class="stat-number">V2</div>
@@ -477,55 +477,54 @@
   </section>
 
   <section class="section">
-    <div class="section-title">Pourquoi Utopia ?</div>
+    <div class="section-title">Pourquoi choisir Utopia ?</div>
     <div class="section-subtitle">
-      Un mélange entre immersion, stabilité, communauté et développement actif.
-      Le but est d’offrir une expérience RP propre, sérieuse et agréable à long terme.
+      Utopia a été conçu pour offrir une expérience plus stable, plus immersive et plus cohérente. Ici, chaque joueur peut évoluer, bâtir son histoire et contribuer à une ville vivante.
     </div>
 
     <div class="cards">
       <div class="card">
-        <h3>Citoyens</h3>
-        <p>Un espace pensé pour les joueurs qui veulent vivre, évoluer et construire leur histoire.</p>
+        <h3>Immersion</h3>
+        <p>Une ville pensée pour favoriser le vrai roleplay, les interactions de qualité et l’évolution naturelle de ton personnage.</p>
         <ul>
-          <li>Support et aide communautaire</li>
-          <li>Suggestions et idées</li>
-          <li>Suivi des annonces importantes</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Développement</h3>
-        <p>Le serveur continue d’évoluer avec des améliorations, correctifs et nouvelles idées.</p>
-        <ul>
-          <li>Signalement de bugs</li>
-          <li>Suggestions techniques</li>
-          <li>Suivi des nouveautés</li>
+          <li>Scénarios réalistes</li>
+          <li>Progression cohérente</li>
+          <li>Expérience axée sur le RP</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Communauté</h3>
-        <p>Un serveur pensé pour durer, avec une vision claire et une ambiance structurée.</p>
+        <p>Une communauté québécoise active où les citoyens, les entreprises et les organisations ont tous leur place.</p>
         <ul>
-          <li>Discord actif</li>
-          <li>Organisation claire</li>
-          <li>Évolution constante</li>
+          <li>Joueurs sérieux</li>
+          <li>Ambiance structurée</li>
+          <li>Ville en évolution</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Développement</h3>
+        <p>Utopia évolue constamment avec des ajustements, des nouveautés et une vision claire pour l’avenir du serveur.</p>
+        <ul>
+          <li>Correctifs réguliers</li>
+          <li>Nouvelles idées</li>
+          <li>Suivi actif du serveur</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section class="section" id="contact">
-    <div class="section-title">Espaces communautaires</div>
+    <div class="section-title">Participer à l’évolution de la ville</div>
     <div class="section-subtitle">
-      Tu pourras plus tard brancher ici l’envoi automatique vers Discord pour les citoyens et le développement.
+      Une suggestion, une question ou une idée pour améliorer l’expérience ? Utopia donne une vraie place à sa communauté et à son développement.
     </div>
 
     <div class="form-grid">
       <div class="form-card">
         <h3>Espace Citoyens</h3>
-        <p>Suggestions, plaintes, support ou questions générales.</p>
+        <p>Pour les suggestions, questions, demandes d’aide ou retours sur l’expérience en ville.</p>
 
         <input type="text" placeholder="Ton nom / pseudo">
         <select>
@@ -540,7 +539,7 @@
 
       <div class="form-card">
         <h3>Espace Développement</h3>
-        <p>Bugs, améliorations et propositions techniques.</p>
+        <p>Pour signaler un bug, proposer une amélioration ou partager une idée technique pour le serveur.</p>
 
         <input type="text" placeholder="Ton nom / pseudo">
         <select>
@@ -556,26 +555,33 @@
   </section>
 
   <div class="footer">
-    Utopia Roleplay • Communauté FiveM Québec
+    Utopia Roleplay • Serveur FiveM québécois • V2
   </div>
 
-<script>
-async function loadPlayers() {
-  try {
-    const res = await fetch("https://icy-sound-9484.emylieg.workers.dev");
-    const data = await res.json();
+  <script>
+    async function loadPlayers() {
+      const navPlayers = document.getElementById("navPlayers");
+      const playersHero = document.getElementById("playersHero");
 
-    document.getElementById("playersHero").innerText = data.players;
-    document.getElementById("navPlayers").innerText = data.players + " joueurs en ligne";
+      try {
+        const res = await fetch("https://icy-sound-9484.emylieg.workers.dev");
+        const data = await res.json();
 
-  } catch {
-    document.getElementById("playersHero").innerText = "0";
-    document.getElementById("navPlayers").innerText = "Serveur en ligne";
-  }
-}
+        if (data.ok && typeof data.players !== "undefined") {
+          playersHero.innerText = data.players;
+          navPlayers.innerText = data.players + " joueurs en ligne";
+        } else {
+          playersHero.innerText = "--";
+          navPlayers.innerText = "Serveur en ligne";
+        }
+      } catch (e) {
+        playersHero.innerText = "--";
+        navPlayers.innerText = "Serveur en ligne";
+      }
+    }
 
-loadPlayers();
-setInterval(loadPlayers, 30000);
-</script>
+    loadPlayers();
+    setInterval(loadPlayers, 30000);
+  </script>
 </body>
 </html>
