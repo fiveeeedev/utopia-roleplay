@@ -1,178 +1,340 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Logs | Utopia Roleplay</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logs | Utopia Roleplay</title>
 
-<style>
+  <style>
+    :root {
+      --primary: #8dcdff;
+      --bg-dark: #09090d;
+      --bg-card: rgba(12, 12, 18, 0.88);
+      --border: rgba(255, 255, 255, 0.08);
+      --text-soft: #d6d6df;
+      --text-muted: #a9a9b7;
+      --green: #7ee787;
+      --red: #ff7b72;
+    }
 
-body {
-margin:0;
-font-family:Arial, sans-serif;
-background:
-linear-gradient(rgba(9,9,13,0.88), rgba(9,9,13,0.95)),
-url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1920&auto=format&fit=crop");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-color:white;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.navbar{
-padding:20px 40px;
-background:#0b0b12;
-border-bottom:1px solid rgba(255,255,255,0.08);
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(9,9,13,0.88), rgba(9,9,13,0.95)),
+        url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1920&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
 
-.logo{
-font-size:26px;
-font-weight:900;
-}
+    .navbar {
+      padding: 20px 40px;
+      background: rgba(11, 11, 18, 0.9);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-.logo span{
-color:#8dcdff;
-}
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
 
-.nav-links a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-opacity:0.85;
-}
+    .logo span {
+      color: var(--primary);
+    }
 
-.nav-links a:hover{
-opacity:1;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:60px 20px;
-}
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.88;
+    }
 
-.title{
-font-size:48px;
-font-weight:900;
-margin-bottom:10px;
-}
+    .nav-links a:hover {
+      opacity: 1;
+    }
 
-.subtitle{
-color:#aaa;
-margin-bottom:40px;
-}
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(141,205,255,0.08);
+      border: 1px solid rgba(141,205,255,0.28);
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
 
-.card{
-background:#111118;
-border:1px solid rgba(255,255,255,0.05);
-padding:25px;
-border-radius:14px;
-}
+    .title {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
 
-.card h3{
-margin-top:0;
-color:#8dcdff;
-}
+    .subtitle {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      line-height: 1.6;
+      max-width: 800px;
+    }
 
-.card p{
-opacity:0.8;
-}
+    .top-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
 
-.btn{
-display:inline-block;
-margin-top:10px;
-padding:10px 16px;
-background:#8dcdff;
-color:black;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
-}
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
 
-.footer{
-text-align:center;
-padding:40px;
-opacity:0.6;
-}
+    .stat-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary);
+    }
 
-</style>
+    .stat-label {
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
 
+    .logs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .log-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .log-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .log-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .log-action {
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+
+    .log-action.connect {
+      background: rgba(126, 231, 135, 0.14);
+      color: var(--green);
+    }
+
+    .log-action.disconnect {
+      background: rgba(255, 123, 114, 0.14);
+      color: var(--red);
+    }
+
+    .log-meta {
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .log-reason {
+      margin-top: 8px;
+      color: #c6c6d0;
+    }
+
+    .empty-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      color: var(--text-muted);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 20px 55px;
+      color: #8f8f9d;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .top-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .title {
+        font-size: 38px;
+      }
+
+      .navbar {
+        padding: 16px 18px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="navbar">
-<div class="logo">UTOPIA <span>RP</span></div>
+  <div class="navbar">
+    <div class="logo">UTOPIA <span>RP</span></div>
 
-<div class="nav-links">
-<a href="index.html">Accueil</a>
-<a href="reglement.html">Règlement</a>
-<a href="changelog.html">Changelog</a>
-<a href="code-criminel.html">Code criminel</a>
-<a href="logs.html">Logs</a>
-</div>
-</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="reglement.html">Règlement</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="code-criminel.html">Code criminel</a>
+      <a href="logs.html">Logs</a>
+      <a href="https://discord.gg/tEMGHt2CKK" target="_blank">Discord</a>
+    </div>
+  </div>
 
-<div class="container">
+  <div class="container">
+    <div class="badge">Logs serveur en direct</div>
+    <div class="title">Logs Connexions</div>
+    <div class="subtitle">
+      Consulte les connexions et déconnexions des joueurs en temps réel sur le serveur.
+    </div>
 
-<div class="title">Logs serveur</div>
-<div class="subtitle">
-Consultez les logs importants du serveur et les actions staff.
-</div>
+    <div class="top-stats">
+      <div class="stat-card">
+        <div class="stat-number" id="totalLogs">--</div>
+        <div class="stat-label">Logs affichés</div>
+      </div>
 
-<div class="grid">
+      <div class="stat-card">
+        <div class="stat-number" id="totalConnects">--</div>
+        <div class="stat-label">Connexions</div>
+      </div>
 
-<div class="card">
-<h3>Logs Staff</h3>
-<p>Actions des administrateurs et modérateurs.</p>
-<a class="btn" href="#">Voir</a>
-</div>
+      <div class="stat-card">
+        <div class="stat-number" id="totalDisconnects">--</div>
+        <div class="stat-label">Déconnexions</div>
+      </div>
+    </div>
 
-<div class="card">
-<h3>Logs Joueurs</h3>
-<p>Connexions, déconnexions et événements joueurs.</p>
-<a class="btn" href="#">Voir</a>
-</div>
+    <div id="logsList" class="logs-list">
+      <div class="empty-card">Chargement des logs...</div>
+    </div>
+  </div>
 
-<div class="card">
-<h3>Logs Serveur</h3>
-<p>Redémarrages, erreurs et événements serveur.</p>
-<a class="btn" href="#">Voir</a>
-</div>
+  <div class="footer">
+    Utopia Roleplay • Logs serveur
+  </div>
 
-<div class="card">
-<h3>Logs Economie</h3>
-<p>Transactions importantes et argent.</p>
-<a class="btn" href="#">Voir</a>
-</div>
+  <script>
+    async function loadLogs() {
+      const container = document.getElementById("logsList");
+      const totalLogs = document.getElementById("totalLogs");
+      const totalConnects = document.getElementById("totalConnects");
+      const totalDisconnects = document.getElementById("totalDisconnects");
 
-<div class="card">
-<h3>Logs Gangs</h3>
-<p>Activités et événements gangs.</p>
-<a class="btn" href="#">Voir</a>
-</div>
+      try {
+        const response = await fetch("http://51.222.255.220:30120/utopia_logs/logs");
+        const logs = await response.json();
 
-<div class="card">
-<h3>Logs Reports</h3>
-<p>Reports joueurs et actions staff.</p>
-<a class="btn" href="#">Voir</a>
-</div>
+        if (!Array.isArray(logs)) {
+          container.innerHTML = "<div class='empty-card'>Impossible de charger les logs.</div>";
+          totalLogs.innerText = "--";
+          totalConnects.innerText = "--";
+          totalDisconnects.innerText = "--";
+          return;
+        }
 
-</div>
+        const reversedLogs = [...logs].reverse();
+        const connects = logs.filter(log => log.action === "connect").length;
+        const disconnects = logs.filter(log => log.action === "disconnect").length;
 
-</div>
+        totalLogs.innerText = logs.length;
+        totalConnects.innerText = connects;
+        totalDisconnects.innerText = disconnects;
 
-<div class="footer">
-Utopia Roleplay • Logs serveur
-</div>
+        if (reversedLogs.length === 0) {
+          container.innerHTML = "<div class='empty-card'>Aucun log disponible pour le moment.</div>";
+          return;
+        }
+
+        container.innerHTML = reversedLogs.map(log => `
+          <div class="log-card">
+            <div class="log-top">
+              <div class="log-name">${escapeHtml(log.name ?? "Inconnu")}</div>
+              <div class="log-action ${escapeHtml(log.action ?? "")}">
+                ${escapeHtml(log.action ?? "unknown")}
+              </div>
+            </div>
+
+            <div class="log-meta">
+              <div><strong>Heure :</strong> ${escapeHtml(log.time ?? "N/A")}</div>
+              ${log.reason ? `<div class="log-reason"><strong>Raison :</strong> ${escapeHtml(log.reason)}</div>` : ""}
+            </div>
+          </div>
+        `).join("");
+
+      } catch (error) {
+        container.innerHTML = "<div class='empty-card'>Erreur lors du chargement des logs.</div>";
+        totalLogs.innerText = "--";
+        totalConnects.innerText = "--";
+        totalDisconnects.innerText = "--";
+        console.error(error);
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    loadLogs();
+    setInterval(loadLogs, 5000);
+  </script>
 
 </body>
 </html>
